@@ -11,7 +11,6 @@ ROOT = Path(__file__).parent
 DATA = ROOT / "data"
 BASE = "https://switch-software-compatibility.nintendo.com/en-US/details/"
 
-
 TRACKED_FIELDS = [
     "status",
     "behavior",
@@ -71,44 +70,65 @@ def parse_compatibility(text):
     if update_date_match:
         result["update_date"] = update_date_match.group(1)
 
-        # Look only at the text between the update date and
-        # the next known section of the Nintendo page.
+        # Everything after the update date.
         after_update = t[update_date_match.end():].strip()
 
-        next_section = re.search(
-            r"\s+(?:View Product Information|Users Interact|Nintendo\.com|"
-            r"Terms of Use|Nintendo Privacy Policy|Region Selector|© Nintendo)",
+        # Nintendo places the content-rating information after the
+        # update message. The product-information section comes after
+        # those ratings. We only need the portion before that section.
+        product_match = re.search(
+            r"\s+View Product Information\b",
             after_update,
             re.IGNORECASE
         )
 
-        if next_section:
-            update_area = after_update[:next_section.start()].strip()
+        if product_match:
+            update_area = after_update[:product_match.start()].strip()
         else:
-            update_area = after_update.strip()
+            update_area = after_update
 
-        # A genuine update message ends with a period.
-        # If there is no period, Nintendo has not provided
-        # a separate update message.
-        message_match = re.match(
-            r"(.+?\.)\s*$",
+        # Remove trailing content-rating information when it follows
+        # a genuine update message.
+        #
+        # Examples:
+        #   "Previously identified issues have been resolved with an update.
+        #    Blood and Gore, Language, Partial Nudity, Violence, Users Interact"
+        #
+        #   "Users may experience audio problems in some areas.
+        #    Users Interact"
+        #
+        #   "Fantasy Violence, Mild Blood, Tobacco Reference"
+        #
+        # We identify the first complete sentence. If the text before
+        # that sentence is just rating information, there is no message.
+        sentence_match = re.match(
+            r"(.+?\.)",
             update_area
         )
 
-        if message_match:
-            possible_message = message_match.group(1).strip()
+        if sentence_match:
+            possible_message = sentence_match.group(1).strip()
 
-            # Do not treat content-rating descriptors as an update message.
-            rating_only = (
-                "," in possible_message
-                and not re.search(
-                    r"\bissues?\b|\bproblems?\b|\bexperience\b|\bupdate\b|\bresolved\b",
-                    possible_message,
-                    re.IGNORECASE
-                )
-            )
+            # A message should contain normal sentence wording.
+            # A rating-only block generally consists of short descriptor
+            # phrases separated by commas and does not contain these
+            # sentence-style indicators.
+            rating_indicators = [
+                "Blood and Gore",
+                "Fantasy Violence",
+                "Mild Blood",
+                "Mild Suggestive Themes",
+                "Language",
+                "Partial Nudity",
+                "Tobacco Reference",
+                "Use of Alcohol",
+                "Violence",
+                "Users Interact",
+            ]
 
-            if not rating_only:
+            is_exact_rating = possible_message in rating_indicators
+
+            if not is_exact_rating:
                 result["update_message"] = possible_message
 
     return result
@@ -141,8 +161,8 @@ def check(page, game):
 
         result.update(compatibility)
 
-        # Keep this hash for debugging/reference, but it is
-        # no longer used to determine whether compatibility changed.
+        # Keep this hash for debugging/reference.
+        # It is NOT used for compatibility change detection.
         result["text_sha256"] = hashlib.sha256(
             text.encode()
         ).hexdigest()
