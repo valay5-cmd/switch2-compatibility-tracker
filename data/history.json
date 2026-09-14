@@ -83,5 +83,18 @@
         "new": null
       }
     ]
+  },
+  {
+    "type": "changed",
+    "title": "Attack on Titan 2",
+    "title_id": "010034500641a000",
+    "date": "2026-09-14T23:30:15.776508+00:00",
+    "changes": [
+      {
+        "field": "update_message",
+        "old": null,
+        "new": "Previously identified issues have been resolved with an update."
+      }
+    ]
   }
 ]
