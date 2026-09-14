@@ -40,47 +40,31 @@ def parse_compatibility(text):
         "update_message": None,
     }
 
-    # Find the Nintendo Switch 2 compatibility status and behavior.
-    match = re.search(
+    # Find the compatibility section.
+    compatibility_match = re.search(
         r"Nintendo Switch 2 Compatibility\s+"
         r"(Supported|Unsupported|Compatible)"
-        r"(?:\s+[–-]\s+([^.\n]+(?:\.[^A-Z\n][^\n]*)?))?",
+        r"(?:\s+[–-]\s+([^.\n]+(?:\.)?))?",
         t,
         re.IGNORECASE
     )
 
-    if match:
-        result["status"] = match.group(1).capitalize()
+    if compatibility_match:
+        result["status"] = compatibility_match.group(1).capitalize()
 
-        if match.group(2):
-            result["behavior"] = match.group(2).strip()
+        if compatibility_match.group(2):
+            result["behavior"] = compatibility_match.group(2).strip()
 
-    # Find Nintendo's update date.
-    match = re.search(
-        r"Update\s+(\d{2}/\d{2}/\d{4})",
+    # Find the update date and the message that follows it.
+    update_match = re.search(
+        r"Update\s+(\d{2}/\d{2}/\d{4})\s+(.+?)(?=\s+(?:Users Interact|View Product Information|Nintendo\.com|Terms of Use|Nintendo Privacy Policy|Region Selector|© Nintendo)|$)",
         t,
         re.IGNORECASE
     )
 
-    if match:
-        result["update_date"] = match.group(1)
-
-        # Everything after the update date, before the next page section.
-        remainder = t[match.end():].strip()
-
-        for marker in [
-            "View Product Information",
-            "Nintendo.com",
-            "Terms of Use",
-            "Nintendo Privacy Policy",
-            "Region Selector",
-            "© Nintendo",
-        ]:
-            if marker in remainder:
-                remainder = remainder.split(marker, 1)[0].strip()
-
-        if remainder:
-            result["update_message"] = remainder
+    if update_match:
+        result["update_date"] = update_match.group(1)
+        result["update_message"] = update_match.group(2).strip()
 
     return result
 
