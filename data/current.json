@@ -3,9 +3,36 @@
     "title": "The Legend of Zelda: Breath of the Wild",
     "title_id": "01007ef00011e000",
     "url": "https://switch-software-compatibility.nintendo.com/en-US/details/01007EF00011E000",
-    "checked_at": "2026-09-14T22:14:42.192305+00:00",
+    "checked_at": "2026-09-14T22:19:01.898559+00:00",
     "status": "Supported",
     "text_sha256": "e98f97aea5ac0c1e71f161ec43a1809ba8c3930b3dd0542483ccb02433064420",
     "page_text": "Nintendo Switch 2 Compatibility Information\n\nThe Legend of Zelda™: Breath of the Wild\n\nNintendo\n\nNintendo Switch 2 Compatibility\nSupported – Game behavior is consistent with Nintendo Switch.\n\nFantasy Violence, Mild Suggestive Themes, Use of Alcohol\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
+  },
+  {
+    "title": "Attack on Titan 2",
+    "title_id": "010034500641a000",
+    "url": "https://switch-software-compatibility.nintendo.com/en-US/details/010034500641A000",
+    "checked_at": "2026-09-14T22:19:04.970964+00:00",
+    "status": "Supported",
+    "text_sha256": "ad4206344b1d8f07156f075b337203518e523cbee8197d53c2b121daa6fcf841",
+    "page_text": "Nintendo Switch 2 Compatibility Information\n\nAttack on Titan 2\n\nKOEI TECMO AMERICA\n\nNintendo Switch 2 Compatibility\nSupported – Game behavior is consistent with Nintendo Switch.\nUpdate 09/10/2026\nPreviously identified issues have been resolved with an update.\n\nBlood and Gore, Language, Partial Nudity, Violence, Users Interact\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
+  },
+  {
+    "title": "Rain World",
+    "title_id": "010047600bf72000",
+    "url": "https://switch-software-compatibility.nintendo.com/en-US/details/010047600BF72000",
+    "checked_at": "2026-09-14T22:19:07.722529+00:00",
+    "status": "Unsupported",
+    "text_sha256": "bc49aa90f32266c1c134e4d774ec1adda5294462cf950c95f4fec0854baff69a",
+    "page_text": "Nintendo Switch 2 Compatibility Information\n\nRain World\n\nAkupara Games\n\nNintendo Switch 2 Compatibility\nUnsupported – Problems with game progression have been found.\nUpdate 09/10/2026\n\nFantasy Violence, Mild Blood, Tobacco Reference\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
+  },
+  {
+    "title": "Colors Live",
+    "title_id": "010020500bd86000",
+    "url": "https://switch-software-compatibility.nintendo.com/en-US/details/010020500BD86000",
+    "checked_at": "2026-09-14T22:19:10.443384+00:00",
+    "status": "Supported",
+    "text_sha256": "064e95763f0061412f876333754522b0db11d848e9fdf859481ec7a51b50db54",
+    "page_text": "Nintendo Switch 2 Compatibility Information\n\nColors Live\n\nCollecting Smiles\n\nNintendo Switch 2 Compatibility\nSupported – Game behavior may vary from Nintendo Switch.\nUpdate 09/10/2026\nUsers may experience audio problems in some areas.\n\nUsers Interact\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
   }
 ]

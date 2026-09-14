@@ -14,5 +14,29 @@
     "date": "2026-09-14T22:14:42.192305+00:00",
     "old_status": null,
     "new_status": "Supported"
+  },
+  {
+    "type": "first_seen",
+    "title": "Attack on Titan 2",
+    "title_id": "010034500641a000",
+    "date": "2026-09-14T22:19:04.970964+00:00",
+    "old_status": null,
+    "new_status": "Supported"
+  },
+  {
+    "type": "first_seen",
+    "title": "Rain World",
+    "title_id": "010047600bf72000",
+    "date": "2026-09-14T22:19:07.722529+00:00",
+    "old_status": null,
+    "new_status": "Unsupported"
+  },
+  {
+    "type": "first_seen",
+    "title": "Colors Live",
+    "title_id": "010020500bd86000",
+    "date": "2026-09-14T22:19:10.443384+00:00",
+    "old_status": null,
+    "new_status": "Supported"
   }
 ]
