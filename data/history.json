@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "type": "first_seen",
+    "title": "TEST GAME — replace this",
+    "title_id": "0100000000000000",
+    "date": "2026-09-14T13:19:10.588879+00:00",
+    "old_status": null,
+    "new_status": "Unknown"
+  }
+]
