@@ -40,8 +40,7 @@ def parse_compatibility(text):
         "update_message": None,
     }
 
-    # Extract the compatibility status and its accompanying explanation.
-    # The explanation ends at the first period.
+    # Extract compatibility status and behavior.
     compatibility_match = re.search(
         r"Nintendo Switch 2 Compatibility\s+"
         r"(Supported|Unsupported|Compatible)"
@@ -54,7 +53,7 @@ def parse_compatibility(text):
         result["status"] = compatibility_match.group(1).capitalize()
         result["behavior"] = compatibility_match.group(2).strip()
 
-    # Extract the update date.
+    # Extract update date.
     update_date_match = re.search(
         r"Update\s+(\d{2}/\d{2}/\d{4})",
         t,
@@ -64,34 +63,42 @@ def parse_compatibility(text):
     if update_date_match:
         result["update_date"] = update_date_match.group(1)
 
-        # Everything immediately after the update date starts here.
+        # Look only at the text between the update date and
+        # the next known section of the Nintendo page.
         after_update = t[update_date_match.end():].strip()
 
-        # Nintendo's update message, when present, is a sentence ending
-        # in a period. Ratings/content descriptors do not end in a period.
+        next_section = re.search(
+            r"\s+(?:View Product Information|Users Interact|Nintendo\.com|"
+            r"Terms of Use|Nintendo Privacy Policy|Region Selector|© Nintendo)",
+            after_update,
+            re.IGNORECASE
+        )
+
+        if next_section:
+            update_area = after_update[:next_section.start()].strip()
+        else:
+            update_area = after_update.strip()
+
+        # A genuine update message ends with a period.
+        # If there is no period, Nintendo has not provided
+        # a separate update message.
         message_match = re.match(
-            r"(.+?\.)",
-            after_update
+            r"(.+?\.)\s*$",
+            update_area
         )
 
         if message_match:
             possible_message = message_match.group(1).strip()
 
-            # Avoid treating rating/content descriptors as an update message.
-            rating_phrases = {
-                "Blood and Gore",
-                "Fantasy Violence",
-                "Mild Blood",
-                "Mild Suggestive Themes",
-                "Language",
-                "Partial Nudity",
-                "Tobacco Reference",
-                "Use of Alcohol",
-                "Violence",
-                "Users Interact",
-            }
+            # Do not treat content-rating descriptors as an update message.
+            rating_only = (
+                "," in possible_message
+                and not re.search(r"\bissues?\b|\bproblems?\b|\bexperience\b|\bupdate\b|\bresolved\b",
+                                  possible_message,
+                                  re.IGNORECASE)
+            )
 
-            if possible_message not in rating_phrases:
+            if not rating_only:
                 result["update_message"] = possible_message
 
     return result
