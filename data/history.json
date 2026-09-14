@@ -70,5 +70,18 @@
     "date": "2026-09-14T23:13:36.601607+00:00",
     "old_status": "Supported",
     "new_status": "Supported"
+  },
+  {
+    "type": "changed",
+    "title": "Attack on Titan 2",
+    "title_id": "010034500641a000",
+    "date": "2026-09-14T23:26:08.427020+00:00",
+    "changes": [
+      {
+        "field": "update_message",
+        "old": "Previously identified issues have been resolved with an update.",
+        "new": null
+      }
+    ]
   }
 ]
