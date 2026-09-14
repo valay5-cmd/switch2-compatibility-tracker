@@ -3,36 +3,48 @@
     "title": "The Legend of Zelda: Breath of the Wild",
     "title_id": "01007ef00011e000",
     "url": "https://switch-software-compatibility.nintendo.com/en-US/details/01007EF00011E000",
-    "checked_at": "2026-09-14T22:19:01.898559+00:00",
+    "checked_at": "2026-09-14T23:13:28.168122+00:00",
     "status": "Supported",
-    "text_sha256": "e98f97aea5ac0c1e71f161ec43a1809ba8c3930b3dd0542483ccb02433064420",
-    "page_text": "Nintendo Switch 2 Compatibility Information\n\nThe Legend of Zelda™: Breath of the Wild\n\nNintendo\n\nNintendo Switch 2 Compatibility\nSupported – Game behavior is consistent with Nintendo Switch.\n\nFantasy Violence, Mild Suggestive Themes, Use of Alcohol\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
+    "behavior": "Game behavior is consistent with Nintendo Switch. Fantasy Violence, Mild Suggestive Themes, Use of Alcohol View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo",
+    "update_date": null,
+    "update_message": null,
+    "text_sha256": "088ee872236a63400f2e610d16937c99f2988302e830b8dbaab3a8f644b88fb5",
+    "page_text": "Nintendo Switch 2 Compatibility Information The Legend of Zelda™: Breath of the Wild Nintendo Nintendo Switch 2 Compatibility Supported – Game behavior is consistent with Nintendo Switch. Fantasy Violence, Mild Suggestive Themes, Use of Alcohol View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo"
   },
   {
     "title": "Attack on Titan 2",
     "title_id": "010034500641a000",
     "url": "https://switch-software-compatibility.nintendo.com/en-US/details/010034500641A000",
-    "checked_at": "2026-09-14T22:19:04.970964+00:00",
+    "checked_at": "2026-09-14T23:13:31.168551+00:00",
     "status": "Supported",
-    "text_sha256": "ad4206344b1d8f07156f075b337203518e523cbee8197d53c2b121daa6fcf841",
-    "page_text": "Nintendo Switch 2 Compatibility Information\n\nAttack on Titan 2\n\nKOEI TECMO AMERICA\n\nNintendo Switch 2 Compatibility\nSupported – Game behavior is consistent with Nintendo Switch.\nUpdate 09/10/2026\nPreviously identified issues have been resolved with an update.\n\nBlood and Gore, Language, Partial Nudity, Violence, Users Interact\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
+    "behavior": "Game behavior is consistent with Nintendo Switch. Update 09/10/2026 Previously identified issues have been resolved with an update. Blood and Gore, Language, Partial Nudity, Violence, Users Interact View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo",
+    "update_date": "09/10/2026",
+    "update_message": "Previously identified issues have been resolved with an update. Blood and Gore, Language, Partial Nudity, Violence, Users Interact",
+    "text_sha256": "6899859711b97aae6bfbf4d1ce18a4aed2c1a018a4928c9dee89770e167c1e3a",
+    "page_text": "Nintendo Switch 2 Compatibility Information Attack on Titan 2 KOEI TECMO AMERICA Nintendo Switch 2 Compatibility Supported – Game behavior is consistent with Nintendo Switch. Update 09/10/2026 Previously identified issues have been resolved with an update. Blood and Gore, Language, Partial Nudity, Violence, Users Interact View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo"
   },
   {
     "title": "Rain World",
     "title_id": "010047600bf72000",
     "url": "https://switch-software-compatibility.nintendo.com/en-US/details/010047600BF72000",
-    "checked_at": "2026-09-14T22:19:07.722529+00:00",
+    "checked_at": "2026-09-14T23:13:33.914852+00:00",
     "status": "Unsupported",
-    "text_sha256": "bc49aa90f32266c1c134e4d774ec1adda5294462cf950c95f4fec0854baff69a",
-    "page_text": "Nintendo Switch 2 Compatibility Information\n\nRain World\n\nAkupara Games\n\nNintendo Switch 2 Compatibility\nUnsupported – Problems with game progression have been found.\nUpdate 09/10/2026\n\nFantasy Violence, Mild Blood, Tobacco Reference\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
+    "behavior": "Problems with game progression have been found. Update 09/10/2026 Fantasy Violence, Mild Blood, Tobacco Reference View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo",
+    "update_date": "09/10/2026",
+    "update_message": "Fantasy Violence, Mild Blood, Tobacco Reference",
+    "text_sha256": "13b3196a8488e0b9e982d6393cc46abc9c049cabba41904950a244b1830f9d00",
+    "page_text": "Nintendo Switch 2 Compatibility Information Rain World Akupara Games Nintendo Switch 2 Compatibility Unsupported – Problems with game progression have been found. Update 09/10/2026 Fantasy Violence, Mild Blood, Tobacco Reference View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo"
   },
   {
     "title": "Colors Live",
     "title_id": "010020500bd86000",
     "url": "https://switch-software-compatibility.nintendo.com/en-US/details/010020500BD86000",
-    "checked_at": "2026-09-14T22:19:10.443384+00:00",
+    "checked_at": "2026-09-14T23:13:36.601607+00:00",
     "status": "Supported",
-    "text_sha256": "064e95763f0061412f876333754522b0db11d848e9fdf859481ec7a51b50db54",
-    "page_text": "Nintendo Switch 2 Compatibility Information\n\nColors Live\n\nCollecting Smiles\n\nNintendo Switch 2 Compatibility\nSupported – Game behavior may vary from Nintendo Switch.\nUpdate 09/10/2026\nUsers may experience audio problems in some areas.\n\nUsers Interact\n\nView Product Information\nNintendo.com\nTerms of Use\nNintendo Privacy Policy\nRegion Selector\n\n© Nintendo"
+    "behavior": "Game behavior may vary from Nintendo Switch. Update 09/10/2026 Users may experience audio problems in some areas. Users Interact View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo",
+    "update_date": "09/10/2026",
+    "update_message": "Users may experience audio problems in some areas. Users Interact",
+    "text_sha256": "a7650940eba2168985adb13900467e3288b9bb35030eddece65bb36534a47aa2",
+    "page_text": "Nintendo Switch 2 Compatibility Information Colors Live Collecting Smiles Nintendo Switch 2 Compatibility Supported – Game behavior may vary from Nintendo Switch. Update 09/10/2026 Users may experience audio problems in some areas. Users Interact View Product Information Nintendo.com Terms of Use Nintendo Privacy Policy Region Selector © Nintendo"
   }
 ]

@@ -38,5 +38,37 @@
     "date": "2026-09-14T22:19:10.443384+00:00",
     "old_status": null,
     "new_status": "Supported"
+  },
+  {
+    "type": "changed",
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "title_id": "01007ef00011e000",
+    "date": "2026-09-14T23:13:28.168122+00:00",
+    "old_status": "Supported",
+    "new_status": "Supported"
+  },
+  {
+    "type": "changed",
+    "title": "Attack on Titan 2",
+    "title_id": "010034500641a000",
+    "date": "2026-09-14T23:13:31.168551+00:00",
+    "old_status": "Supported",
+    "new_status": "Supported"
+  },
+  {
+    "type": "changed",
+    "title": "Rain World",
+    "title_id": "010047600bf72000",
+    "date": "2026-09-14T23:13:33.914852+00:00",
+    "old_status": "Unsupported",
+    "new_status": "Unsupported"
+  },
+  {
+    "type": "changed",
+    "title": "Colors Live",
+    "title_id": "010020500bd86000",
+    "date": "2026-09-14T23:13:36.601607+00:00",
+    "old_status": "Supported",
+    "new_status": "Supported"
   }
 ]
