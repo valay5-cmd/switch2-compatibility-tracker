@@ -12,6 +12,14 @@ DATA = ROOT / "data"
 BASE = "https://switch-software-compatibility.nintendo.com/en-US/details/"
 
 
+TRACKED_FIELDS = [
+    "status",
+    "behavior",
+    "update_date",
+    "update_message",
+]
+
+
 def load(path, default):
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -93,9 +101,11 @@ def parse_compatibility(text):
             # Do not treat content-rating descriptors as an update message.
             rating_only = (
                 "," in possible_message
-                and not re.search(r"\bissues?\b|\bproblems?\b|\bexperience\b|\bupdate\b|\bresolved\b",
-                                  possible_message,
-                                  re.IGNORECASE)
+                and not re.search(
+                    r"\bissues?\b|\bproblems?\b|\bexperience\b|\bupdate\b|\bresolved\b",
+                    possible_message,
+                    re.IGNORECASE
+                )
             )
 
             if not rating_only:
@@ -130,9 +140,13 @@ def check(page, game):
         compatibility = parse_compatibility(text)
 
         result.update(compatibility)
+
+        # Keep this hash for debugging/reference, but it is
+        # no longer used to determine whether compatibility changed.
         result["text_sha256"] = hashlib.sha256(
             text.encode()
         ).hexdigest()
+
         result["page_text"] = text
 
     except PlaywrightTimeoutError as e:
@@ -140,6 +154,23 @@ def check(page, game):
         result["error"] = str(e)
 
     return result
+
+
+def find_changes(previous, current):
+    changes = []
+
+    for field in TRACKED_FIELDS:
+        old_value = previous.get(field)
+        new_value = current.get(field)
+
+        if old_value != new_value:
+            changes.append({
+                "field": field,
+                "old": old_value,
+                "new": new_value,
+            })
+
+    return changes
 
 
 def main():
@@ -167,27 +198,32 @@ def main():
 
             previous = old_by_id.get(game["title_id"])
 
-            if previous and (
-                previous.get("status") != item.get("status")
-                or previous.get("text_sha256") != item.get("text_sha256")
-            ):
-                events.append({
-                    "type": "changed",
-                    "title": item["title"],
-                    "title_id": item["title_id"],
-                    "date": item["checked_at"],
-                    "old_status": previous.get("status"),
-                    "new_status": item.get("status"),
-                })
+            if previous:
+                changes = find_changes(previous, item)
 
-            elif not previous:
+                if changes:
+                    events.append({
+                        "type": "changed",
+                        "title": item["title"],
+                        "title_id": item["title_id"],
+                        "date": item["checked_at"],
+                        "changes": changes,
+                    })
+
+            else:
                 events.append({
                     "type": "first_seen",
                     "title": item["title"],
                     "title_id": item["title_id"],
                     "date": item["checked_at"],
-                    "old_status": None,
-                    "new_status": item.get("status"),
+                    "changes": [
+                        {
+                            "field": field,
+                            "old": None,
+                            "new": item.get(field),
+                        }
+                        for field in TRACKED_FIELDS
+                    ],
                 })
 
         browser.close()
