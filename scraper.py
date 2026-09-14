@@ -21,16 +21,46 @@ def save(path, obj):
 def normalize(s):
     return re.sub(r"\\s+", " ", s or "").strip()
 
-def classify(text):
-    t = text.lower()
-    # Deliberately conservative: this is a POC, not the final parser.
-    if "unsupported" in t:
-        return "Unsupported"
-    if "supported" in t:
-        return "Supported"
-    if "compatible" in t:
-        return "Compatible"
-    return "Unknown"
+def parse_compatibility(text):
+    t = normalize(text)
+
+    result = {
+        "status": "Unknown",
+        "behavior": None,
+        "update_date": None,
+        "update_message": None,
+    }
+
+    # Compatibility status and behavior
+    match = re.search(
+        r"Nintendo Switch 2 Compatibility\s+(Supported|Unsupported|Compatible)"
+        r"(?:\s+[–-]\s+([^\n]+))?",
+        t,
+        re.IGNORECASE
+    )
+
+    if match:
+        result["status"] = match.group(1).capitalize()
+        if match.group(2):
+            result["behavior"] = match.group(2).strip()
+
+    # Update date
+    match = re.search(r"Update\s+(\d{2}/\d{2}/\d{4})", t, re.IGNORECASE)
+    if match:
+        result["update_date"] = match.group(1)
+
+        # Capture the text immediately following the update date
+        remainder = t[match.end():].strip()
+        if remainder:
+            # Stop before the next obvious section of the Nintendo page
+            for marker in ["View Product Information", "Nintendo.com", "Terms of Use"]:
+                if marker in remainder:
+                    remainder = remainder.split(marker, 1)[0].strip()
+
+            if remainder:
+                result["update_message"] = remainder
+
+    return result
 
 def check(page, game):
     title_id = game["title_id"].upper()
@@ -40,8 +70,9 @@ def check(page, game):
         page.goto(url, wait_until="domcontentloaded", timeout=45000)
         page.wait_for_timeout(2500)
         text = normalize(page.locator("body").inner_text(timeout=10000))
-        result["status"] = classify(text)
-        result["text_sha256"] = hashlib.sha256(text.encode()).hexdigest()
+       compatibility = parse_compatibility(text)
+result.update(compatibility)
+result["text_sha256"] = hashlib.sha256(text.encode()).hexdigest()
         result["page_text"] = text
     except PlaywrightTimeoutError as e:
         result["status"] = "Fetch error"
