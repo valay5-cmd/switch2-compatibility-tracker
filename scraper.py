@@ -40,31 +40,59 @@ def parse_compatibility(text):
         "update_message": None,
     }
 
-    # Find the compatibility section.
+    # Extract the compatibility status and its accompanying explanation.
+    # The explanation ends at the first period.
     compatibility_match = re.search(
         r"Nintendo Switch 2 Compatibility\s+"
         r"(Supported|Unsupported|Compatible)"
-        r"(?:\s+[–-]\s+([^.\n]+(?:\.)?))?",
+        r"\s+[–-]\s+(.+?\.)",
         t,
         re.IGNORECASE
     )
 
     if compatibility_match:
         result["status"] = compatibility_match.group(1).capitalize()
+        result["behavior"] = compatibility_match.group(2).strip()
 
-        if compatibility_match.group(2):
-            result["behavior"] = compatibility_match.group(2).strip()
-
-    # Find the update date and the message that follows it.
-    update_match = re.search(
-        r"Update\s+(\d{2}/\d{2}/\d{4})\s+(.+?)(?=\s+(?:Users Interact|View Product Information|Nintendo\.com|Terms of Use|Nintendo Privacy Policy|Region Selector|© Nintendo)|$)",
+    # Extract the update date.
+    update_date_match = re.search(
+        r"Update\s+(\d{2}/\d{2}/\d{4})",
         t,
         re.IGNORECASE
     )
 
-    if update_match:
-        result["update_date"] = update_match.group(1)
-        result["update_message"] = update_match.group(2).strip()
+    if update_date_match:
+        result["update_date"] = update_date_match.group(1)
+
+        # Everything immediately after the update date starts here.
+        after_update = t[update_date_match.end():].strip()
+
+        # Nintendo's update message, when present, is a sentence ending
+        # in a period. Ratings/content descriptors do not end in a period.
+        message_match = re.match(
+            r"(.+?\.)",
+            after_update
+        )
+
+        if message_match:
+            possible_message = message_match.group(1).strip()
+
+            # Avoid treating rating/content descriptors as an update message.
+            rating_phrases = {
+                "Blood and Gore",
+                "Fantasy Violence",
+                "Mild Blood",
+                "Mild Suggestive Themes",
+                "Language",
+                "Partial Nudity",
+                "Tobacco Reference",
+                "Use of Alcohol",
+                "Violence",
+                "Users Interact",
+            }
+
+            if possible_message not in rating_phrases:
+                result["update_message"] = possible_message
 
     return result
 
