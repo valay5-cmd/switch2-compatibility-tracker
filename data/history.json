@@ -96,5 +96,33 @@
         "new": "Previously identified issues have been resolved with an update."
       }
     ]
+  },
+  {
+    "type": "changed",
+    "title": "Rain World",
+    "title_id": "010047600bf72000",
+    "date": "2026-10-06T16:35:43.308418+00:00",
+    "changes": [
+      {
+        "field": "status",
+        "old": "Unsupported",
+        "new": "Supported"
+      },
+      {
+        "field": "behavior",
+        "old": "Problems with game progression have been found.",
+        "new": "Game behavior is consistent with Nintendo Switch."
+      },
+      {
+        "field": "update_date",
+        "old": "09/10/2026",
+        "new": "10/06/2026"
+      },
+      {
+        "field": "update_message",
+        "old": null,
+        "new": "Previously identified issues have been resolved with an update."
+      }
+    ]
   }
 ]
