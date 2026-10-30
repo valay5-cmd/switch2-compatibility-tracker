@@ -152,5 +152,33 @@
         "new": null
       }
     ]
+  },
+  {
+    "type": "changed",
+    "title": "Attack on Titan 2",
+    "title_id": "010034500641a000",
+    "date": "2026-10-30T10:53:36.089441+00:00",
+    "changes": [
+      {
+        "field": "status",
+        "old": "Unknown",
+        "new": "Supported"
+      },
+      {
+        "field": "behavior",
+        "old": null,
+        "new": "Game behavior is consistent with Nintendo Switch."
+      },
+      {
+        "field": "update_date",
+        "old": null,
+        "new": "09/10/2026"
+      },
+      {
+        "field": "update_message",
+        "old": null,
+        "new": "Previously identified issues have been resolved with an update."
+      }
+    ]
   }
 ]
